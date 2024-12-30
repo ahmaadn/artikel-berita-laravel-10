@@ -27,10 +27,18 @@ Route::group(["prefix" => "auth", 'as' => 'auth.'], function () {
 
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register-proses', [AuthController::class, 'register_proses'])->name('register-proses');
+
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 
 // Dashboard
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+// ADMIN
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'user-access:admin'], 'as' => 'admin.'], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+// USER
+Route::group(['prefix' => 'user', 'middleware' => ['auth', 'user-access:user'], 'as' => 'user.'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
