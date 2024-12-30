@@ -44,6 +44,29 @@
                 </ul>
             </div>
         </li>
+        @roles(['admin'])
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <i class="typcn typcn-briefcase menu-icon"></i>
+                <span class="menu-title">Kelola User</span>
+                <i class="typcn typcn-chevron-right menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/buttons.html">
+                            Daftar User
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/ui-features/dropdowns.html">
+                            Tambah User
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        @endroles
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="typcn typcn-user-add-outline menu-icon"></i>
@@ -58,7 +81,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/register.html">
+                        <a class="nav-link" href="{{route('auth.logout')}}">
                             Logout
                         </a>
                     </li>
