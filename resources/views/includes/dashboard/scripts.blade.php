@@ -7,3 +7,4 @@
 <script src="{{ asset('assets/js/dashboard/progressbar.min.js') }}"></script>
 <script src='{{ asset("assets/js/dashboard/chart.min.js") }}'></script>
 <script src='{{ asset("assets/js/dashboard/main.js") }}'></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

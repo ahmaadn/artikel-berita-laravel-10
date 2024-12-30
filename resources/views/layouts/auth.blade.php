@@ -46,7 +46,7 @@
     <script src='{{ asset("assets/js/dashboard/template.js") }}'></script>
     <script src='{{ asset("assets/js/dashboard/settings.js") }}'></script>
     <script src='{{ asset("assets/js/dashboard/todolist.js") }}'></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('scripts')
 </body>
 

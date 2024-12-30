@@ -21,9 +21,14 @@ Route::get("/about", [AppController::class, "about"])->name("about");
 Route::get("/latest", [AppController::class, "latestNews"])->name("latest_news");
 
 // Auth
-Route::get('/auth/login', [AuthController::class, 'login'])->name('auth.login');
+Route::group(["prefix" => "auth", 'as' => 'auth.'], function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login-proses', [AuthController::class, 'login_proses'])->name('login-proses');
 
-Route::get('/auth/register', [AuthController::class, 'register'])->name('auth.register');
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register-proses', [AuthController::class, 'register_proses'])->name('register-proses');
+});
+
 
 // Dashboard
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
