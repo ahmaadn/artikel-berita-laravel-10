@@ -1,0 +1,9 @@
+<script src="{{ asset('assets/js/dashboard/vendor.bundle.base.js')}}"></script>
+<script src='{{ asset("assets/js/dashboard/off-canvas.js") }}'></script>
+<script src='{{ asset("assets/js/dashboard/hoverable-collapse.js") }}'></script>
+<script src='{{ asset("assets/js/dashboard/template.js") }}'></script>
+<script src='{{ asset("assets/js/dashboard/settings.js") }}'></script>
+<script src='{{ asset("assets/js/dashboard/todolist.js") }}'></script>
+<script src="{{ asset('assets/js/dashboard/progressbar.min.js') }}"></script>
+<script src='{{ asset("assets/js/dashboard/chart.min.js") }}'></script>
+<script src='{{ asset("assets/js/dashboard/main.js") }}'></script>

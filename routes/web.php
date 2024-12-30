@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,8 @@ Route::get("/latest", [AppController::class, "latestNews"])->name("latest_news")
 Route::get('/auth/login', [AuthController::class, 'login'])->name('auth.login');
 
 Route::get('/auth/register', [AuthController::class, 'register'])->name('auth.register');
+
+// Dashboard
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
