@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico')}} ">
 
-    @stack('prepend-style')
-    @include('includes.style')
-    @stack('style')
+    @stack('prepend-styles')
+    @include('includes.styles')
+    @stack('styles')
 
 </head>
 
@@ -22,9 +22,9 @@
 
     @include('includes.footer')
 
-    @stack('preepend-script')
-    @include('includes.script')
-    @stack('script')
+    @stack('preepend-scripts')
+    @include('includes.scripts')
+    @stack('scripts')
 </body>
 
 </html>
