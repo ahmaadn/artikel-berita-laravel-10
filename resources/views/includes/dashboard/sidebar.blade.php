@@ -54,7 +54,7 @@
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/buttons.html">
+                        <a class="nav-link" href="{{route('admin.users.index')}}">
                             Daftar User
                         </a>
                     </li>

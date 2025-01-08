@@ -13,7 +13,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Profile Update</h4>
-                        <form class="forms-sample" action="{{ route('dashboard.update-profile') }}" method="POST">
+                        <form class="forms-sample" action="{{ route('admin.users.update', $user->id) }}" method="POST">
                             @csrf
                             @method("PUT")
                             <div class="form-group">
@@ -36,6 +36,18 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label for="role">Role</label>
+                                <select name="role" class="form-control" id="role">
+                                    <option value="user" @if ($user->role == 'user') selected @endif>User</option>
+                                    <option value="admin" @if ($user->role == 'admin') selected @endif>Admin</option>
+                                </select>
+                                @error('role')
+                                    <span class="text-danger">
+                                        {{ $message}}
+                                    </span>
+                                @enderror
+                            </div>
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                         </form>
                     </div>
@@ -45,7 +57,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Profile Update</h4>
-                        <form class="forms-sample" action="{{ route('dashboard.update-profile') }}" method="POST">
+                        <form class="forms-sample" action="{{ route('admin.users.update', $user->id) }}" method="POST">
                             @csrf
                             @method("PUT")
                             <div class="form-group">

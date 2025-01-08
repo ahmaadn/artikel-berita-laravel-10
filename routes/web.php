@@ -5,6 +5,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,7 +45,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('dashboard.update-profile');
 
     // ADMIN
-    Route::group(['prefix' => 'admin', 'middleware' => 'user-access:admin', 'as' => 'admin.'], function () {
-
+    Route::group(['middleware' => 'user-access:admin', 'as' => 'admin.'], function () {
+        Route::resource('users', UserController::class);
     });
 });
