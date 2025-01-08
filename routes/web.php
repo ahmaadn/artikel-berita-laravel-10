@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -44,8 +45,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('dashboard.update-profile');
 
+    Route::resource('articles', ArticleController::class)->except(['show', 'latest']);
+
     // ADMIN
     Route::group(['middleware' => 'user-access:admin', 'as' => 'admin.'], function () {
         Route::resource('users', UserController::class);
+        Route::resource('categories', CategoryController::class);
     });
 });

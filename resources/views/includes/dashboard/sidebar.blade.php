@@ -18,13 +18,18 @@
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/buttons.html">
+                        <a class="nav-link" href="{{route('articles.index')}}">
                             Daftar Artikel
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/dropdowns.html">
+                        <a class="nav-link" href="{{route('articles.create')}}">
                             Tambah Artikel
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.categories.index')}}">
+                            Kategori Artikel
                         </a>
                     </li>
                 </ul>
