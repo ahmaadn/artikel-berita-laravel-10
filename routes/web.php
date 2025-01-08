@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", [AppController::class, "index"])->name("home");
 Route::get("/about", [AppController::class, "about"])->name("about");
-Route::get("/latest", [AppController::class, "latestNews"])->name("latest_news");
+Route::get("/latest", [ArticleController::class, "latest"])->name("articles.latest");
+Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.detail');
+
 
 // Auth
 Route::group(["prefix" => "auth", 'as' => 'auth.'], function () {
@@ -33,12 +36,11 @@ Route::group(["prefix" => "auth", 'as' => 'auth.'], function () {
 
 
 // Dashboard
-// ADMIN
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'user-access:admin'], 'as' => 'admin.'], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-// USER
-Route::group(['prefix' => 'user', 'middleware' => ['auth', 'user-access:user'], 'as' => 'user.'], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // ADMIN
+    Route::group(['prefix' => 'admin', 'middleware' => 'user-access:admin', 'as' => 'admin.'], function () {
+
+    });
 });

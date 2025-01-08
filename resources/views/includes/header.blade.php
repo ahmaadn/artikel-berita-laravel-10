@@ -52,7 +52,7 @@
                                     <ul id="navigation">
                                         <li><a href="{{route('home')}}">Home</a></li>
                                         <li><a href="{{route('about')}}">About</a></li>
-                                        <li><a href="{{route('latest_news')}}">Latest News</a></li>
+                                        <li><a href="{{route('articles.latest')}}">Latest News</a></li>
                                         <li><a href="{{route('auth.login')}}">Login</a></li>
                                     </ul>
                                 </nav>
