@@ -14,12 +14,13 @@ class ArticleController extends Controller
     // NO PUBLIS NO AUTH
     public function show($id): View
     {
-        return view('pages.articles.index');
+        $article = Article::findOrFail($id);
+        return view('pages.articles.index', ['article' => $article]);
     }
 
     public function latest(): View
     {
-        return view('pages.articles.index');
+        return view('pages.articles.index', ['article' => Article::latest()->first()]);
     }
 
     // AUTH

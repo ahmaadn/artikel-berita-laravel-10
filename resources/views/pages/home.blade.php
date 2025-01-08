@@ -6,9 +6,6 @@ Next News | Home
 
 @section('content')
 <main>
-    <!-- Trending Area Start -->
-    <!-- Trending Area End -->
-    <!-- Whats New Start -->
     <section class="whats-news-area pt-50 pb-20">
         <div class="container">
             <div class="row">
