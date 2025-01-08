@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -14,18 +15,24 @@ class ArticleController extends Controller
     // NO PUBLIS NO AUTH
     public function show($id): View
     {
-        return view('pages.articles.index');
+        $article = Article::findOrFail($id);
+        return view('pages.articles.index', ['article' => $article]);
     }
 
     public function latest(): View
     {
-        return view('pages.articles.index');
+        return view('pages.articles.index', ['article' => Article::latest()->first()]);
     }
 
     // AUTH
     public function index(): View
     {
-        return view("pages.articles.list", ['articles' => Article::all()]);
+        if (Auth::check()) {
+            $article = Article::get()->where('user_id', '=', auth()->user());
+        } else {
+            $article = Article::get();
+        }
+        return view("pages.articles.list", ['articles' => $article]);
     }
 
     public function edit($id)

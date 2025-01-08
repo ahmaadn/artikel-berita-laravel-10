@@ -1,7 +1,9 @@
 <link rel="stylesheet" href='{{ asset("assets/css/bootstrap.min.css") }}'>
 <link rel="stylesheet" href='{{ asset("assets/css/owl.carousel.min.css") }}'>
+
 <link rel="stylesheet" href='{{ asset("assets/css/ticker-style.css") }}'>
 <link rel="stylesheet" href='{{ asset("assets/css/flaticon.css") }}'>
+
 <link rel="stylesheet" href='{{ asset("assets/css/slicknav.css") }}'>
 <link rel="stylesheet" href='{{ asset("assets/css/animate.min.css") }}'>
 <link rel="stylesheet" href='{{ asset("assets/css/magnific-popup.css") }}'>
