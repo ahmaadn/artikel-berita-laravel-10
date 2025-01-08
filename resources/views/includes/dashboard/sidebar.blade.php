@@ -27,11 +27,13 @@
                             Tambah Artikel
                         </a>
                     </li>
+                    @roles(['admin'])
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin.categories.index')}}">
                             Kategori Artikel
                         </a>
                     </li>
+                    @endroles
                 </ul>
             </div>
         </li>
