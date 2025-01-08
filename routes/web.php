@@ -45,6 +45,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('dashboard.update-profile');
 
+    Route::resource('articles', ArticleController::class)->except(['show', 'latest']);
+
     // ADMIN
     Route::group(['middleware' => 'user-access:admin', 'as' => 'admin.'], function () {
         Route::resource('users', UserController::class);
