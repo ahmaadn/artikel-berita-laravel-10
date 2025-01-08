@@ -27,6 +27,11 @@
                             Tambah Artikel
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin.categories.index')}}">
+                            Kategori Artikel
+                        </a>
+                    </li>
                 </ul>
             </div>
         </li>

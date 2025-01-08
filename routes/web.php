@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -47,5 +48,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     // ADMIN
     Route::group(['middleware' => 'user-access:admin', 'as' => 'admin.'], function () {
         Route::resource('users', UserController::class);
+        Route::resource('categories', CategoryController::class);
     });
 });
