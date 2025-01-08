@@ -4,6 +4,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,8 +37,11 @@ Route::group(["prefix" => "auth", 'as' => 'auth.'], function () {
 
 
 // Dashboard
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
+    Route::get('', [DashboardController::class, 'index'])->name('dashboard.index');
+
+    Route::get('/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('dashboard.update-profile');
 
     // ADMIN
     Route::group(['prefix' => 'admin', 'middleware' => 'user-access:admin', 'as' => 'admin.'], function () {
