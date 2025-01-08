@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -9,7 +11,7 @@ class AppController extends Controller
 {
     public function index(): View
     {
-        return view("pages.home");
+        return view("pages.home", ['articles' => Article::all(), 'categories' => Category::all()]);
     }
     public function about(): View
     {
