@@ -99,13 +99,13 @@ Next News | Home
                                         <div class="whats-news-caption">
                                             <div class="row">
                                                 @foreach ($category->articles->take(4) as $article)
-                                                    <div class="col-lg-6 col-md-6">
+                                                    <div class="col-lg-4 col-md-4">
                                                         <div class="single-what-news mb-100">
                                                             <div class="what-img">
                                                                 <img src='{{asset($article->image)}}' alt="{{$article->title}}">
                                                             </div>
                                                             <div class="what-cap">
-                                                                <h4><a href="{{route('articles.index', $article->id)}}">
+                                                                <h4><a href="{{route('articles.detail', $article->id)}}">
                                                                         {{ Str::limit($article->content, 30)}}
                                                                     </a>
                                                                 </h4>
@@ -147,7 +147,8 @@ Next News | Home
                                         <img src='{{asset($article->image)}}' alt="{{$article->title}}">
                                     </div>
                                     <div class="what-cap">
-                                        <h4><a href="{{route('articles.index', $article->id)}}">{{$article->title}}</a></h4>
+                                        <h4><a href="{{route('articles.detail', $article->id)}}">{{$article->title}}</a>
+                                        </h4>
                                     </div>
                                 </div>
                             @endforeach

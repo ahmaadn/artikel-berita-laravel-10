@@ -21,16 +21,23 @@ Dashboard | Manage User
                                 <th>title</th>
                                 <th>author</th>
                                 <th>Kategori</th>
-                                <th>create_at</th>
+                                <th>Komentar</th>
+                                <th>dibuat</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($articles as $article)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$article->title}}</td>
+                                    <td>
+                                        <a href="{{route('articles.detail', [$article->id])}}">{{$article->title}}
+                                        </a>
+                                    </td>
                                     <td>{{$article->user->name}}</td>
                                     <td>{{$article->category->name}}</td>
+                                    <td>{{count($article->comments)}}</td>
+                                    <td>{{$article->created_at}}</td>
                                     <td>
                                         <form class="d-flex" action="{{route('articles.destroy', $article->id)}}"
                                             method="POST">

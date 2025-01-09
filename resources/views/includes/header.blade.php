@@ -53,7 +53,12 @@
                                         <li><a href="{{route('home')}}">Home</a></li>
                                         <li><a href="{{route('about')}}">About</a></li>
                                         <li><a href="{{route('articles.latest')}}">Latest News</a></li>
-                                        <li><a href="{{route('auth.login')}}">Login</a></li>
+                                        @if (Auth::check())
+                                            <li><a href="{{route('dashboard.index')}}">Dashboard</a></li>
+                                        @else
+                                            <li><a href="{{route('auth.login')}}">Login</a></li>
+                                        @endif
+
                                     </ul>
                                 </nav>
                             </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -46,6 +47,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('dashboard.update-profile');
 
     Route::resource('articles', ArticleController::class)->except(['show', 'latest']);
+    Route::post('/comments/{id}', [CommentController::class, 'store'])->name('comments.store');
 
     // ADMIN
     Route::group(['middleware' => 'user-access:admin', 'as' => 'admin.'], function () {

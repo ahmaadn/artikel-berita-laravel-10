@@ -19,53 +19,57 @@ Next News | titile here
                     </div>
                     <div class="section-tittle mb-30 pt-30">
                         <h3>{{$article->title}}</h3>
+                        <small>Author : {{$article->user->name}}</small> <br>
+                        <small>Date : {{$article->created_at}}</small>
                     </div>
                     <div class="about-prea">
                         <p class="about-pera1 mb-25">{{$article->content}}</p>
                     </div>
                     <!-- From -->
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <form class="form-contact contact_form mb-80" action="contact_process.php" method="post"
-                                id="contactForm" novalidate="novalidate">
+                    <div class="section-tittle mb-30 pt-30">
+                        <h3>Komentar</h3>
+                    </div>
+                    @foreach ($article->comments as $comment)
+                        <div class="card text-body mt-10">
+                            <div class="card-body ">
+                                <div class="d-flex flex-start">
+                                    <div>
+                                        <h6 class="fw-bold mb-1">{{$comment->user->name}}</h6>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <p class="mb-0">
+                                                {{$comment->created_at}}
+                                            </p>
+                                        </div>
+                                        <p class="mb-0">
+                                            {{$comment->messange}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    <div class="row mt-10">
+                        <div class="col-12">
+                            <form class="form-contact contact_form" action="{{route('comments.store', $article->id)}}"
+                                id="contactForm" novalidate="novalidate" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <textarea class="form-control w-100 error" name="message" id="message"
-                                                cols="30" rows="9" onfocus="this.placeholder = ''"
+                                            <textarea class="form-control w-100 error" id="message" name="messange"
+                                                onfocus="this.placeholder = ''"
                                                 onblur="this.placeholder = 'Enter Message'"
                                                 placeholder="Enter Message"></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input class="form-control error" name="name" id="name" type="text"
-                                                onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = 'Enter your name'"
-                                                placeholder="Enter your name">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input class="form-control error" name="email" id="email" type="email"
-                                                onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = 'Enter email address'" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <input class="form-control error" name="subject" id="subject" type="text"
-                                                onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Subject">
-                                        </div>
-                                    </div>
                                 </div>
-                                <div class="form-group mt-3">
+                                <div class="form-group">
                                     <button type="submit" class="button button-contactForm boxed-btn">Send</button>
                                 </div>
                             </form>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
