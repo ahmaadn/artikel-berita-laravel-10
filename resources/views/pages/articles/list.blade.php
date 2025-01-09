@@ -10,7 +10,7 @@ Dashboard | Manage User
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Table Users</h4>
+                <h4 class="card-title">Daftar Atikel</h4>
                 <a class="btn btn-success btn-sm" style="margin-bottom: 24px;"
                     href="{{route('articles.create')}}">Tambah Artikel</a>
                 <div class="table-responsive">
@@ -22,6 +22,7 @@ Dashboard | Manage User
                                 <th>author</th>
                                 <th>Kategori</th>
                                 <th>Komentar</th>
+                                <th>Suka</th>
                                 <th>dibuat</th>
                                 <th>Aksi</th>
                             </tr>
@@ -37,6 +38,7 @@ Dashboard | Manage User
                                     <td>{{$article->user->name}}</td>
                                     <td>{{$article->category->name}}</td>
                                     <td>{{count($article->comments)}}</td>
+                                    <td>{{count($article->likes)}}</td>
                                     <td>{{$article->created_at}}</td>
                                     <td>
                                         <form class="d-flex" action="{{route('articles.destroy', $article->id)}}"

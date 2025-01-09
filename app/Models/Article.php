@@ -27,9 +27,12 @@ class Article extends Model
     {
         return $this->belongsTo(Category::class);
     }
-
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
     }
 }

@@ -21,11 +21,16 @@ Next News | titile here
                         <h3>{{$article->title}}</h3>
                         <small>Author : {{$article->user->name}}</small> <br>
                         <small>Date : {{$article->created_at}}</small>
+                        <small>Categori : {{$article->category->name}}</small> <br>
                     </div>
                     <div class="about-prea">
                         <p class="about-pera1 mb-25">{{$article->content}}</p>
                     </div>
-                    <!-- From -->
+                    <!-- Like Button -->
+
+                    <button type="submit" class="btn btn-primary" @class(['liked' => $like]) id="btn-like">
+                        Like <span id="like-count">{{ $article->likes->count() }}</span>
+                    </button>
                     <div class="section-tittle mb-30 pt-30">
                         <h3>Komentar</h3>
                     </div>
@@ -74,6 +79,38 @@ Next News | titile here
             </div>
         </div>
     </div>
+</div>
 
+@endsection
+@push('scripts')
+    <script>
+        const btnLike = document.getElementById('btn-like')
+        const likeCount = document.getElementById('like-count')
+        btnLike.addEventListener('click', () => {
+            if (btnLike.classList.contains('liked')) {
+                fetch('{{ route('articles.dislike', $article->id) }}', {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                }).then(response => response.json())
+                    .then(data => {
+                        likeCount.innerText = data.likes_count;
+                        btnLike.classList.remove('liked')
+                    });
+            } else {
+                fetch('{{ route('articles.like', $article->id) }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                }).then(response => response.json())
+                    .then(data => {
+                        likeCount.innerText = data.likes_count;
+                        btnLike.classList.add('liked')
+                    });
+            }
+        })
+    </script>
 
-    @endsection
+@endpush

@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-
+Dahsboard | Edit Kategori
 @endsection
 
 

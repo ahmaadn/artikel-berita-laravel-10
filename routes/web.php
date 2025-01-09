@@ -8,6 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +26,6 @@ Route::get("/", [AppController::class, "index"])->name("home");
 Route::get("/about", [AppController::class, "about"])->name("about");
 Route::get("/latest", [ArticleController::class, "latest"])->name("articles.latest");
 Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.detail');
-
 
 // Auth
 Route::group(["prefix" => "auth", 'as' => 'auth.'], function () {
@@ -48,6 +48,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
 
     Route::resource('articles', ArticleController::class)->except(['show', 'latest']);
     Route::post('/comments/{id}', [CommentController::class, 'store'])->name('comments.store');
+
+    Route::post('/articles/{article}/like', [LikeController::class, 'store'])->name('articles.like');
+    Route::delete('/articles/{article}/dislike', [LikeController::class, 'destroy'])->name('articles.dislike');
 
     // ADMIN
     Route::group(['middleware' => 'user-access:admin', 'as' => 'admin.'], function () {

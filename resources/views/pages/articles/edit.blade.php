@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-
+Dashboard | Edit Artikel
 @endsection
 
 
@@ -12,7 +12,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Create Users</h4>
+                        <h4 class="card-title">Edit Artikel</h4>
                         <form class="forms-sample" action="{{ route('articles.update', $article->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
@@ -28,7 +28,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="category_id">Kayegori</label>
+                                <label for="category_id">Kategori</label>
                                 <select name="category_id" class="form-control" id="category_id">
                                     @foreach ($categories as $category)
                                         <option value="{{$category->id}}" @if ($article->category_id == $category->id)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Like;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,13 +16,15 @@ class ArticleController extends Controller
     public function show($id): View
     {
         $article = Article::findOrFail($id);
-        return view('pages.articles.index', ['article' => $article]);
+        $like = Like::where('article_id', '=', $article->id)->where('user_id', '=', auth()->user()->id)->exists();
+        return view('pages.articles.index', ['article' => $article, 'like' => $like]);
     }
 
     public function latest(): View
     {
         $article = Article::latest()->first();
-        return view('pages.articles.index', ['article' => $article]);
+        $like = Like::where('article_id', '=', $article->id)->where('user_id', '=', auth()->user()->id)->exists();
+        return view('pages.articles.index', ['article' => $article, 'like' => $like]);
     }
 
     // AUTH
